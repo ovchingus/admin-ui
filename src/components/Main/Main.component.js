@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 import LeftMenu from '../LeftMenu/LeftMenu.container';
 import Routing from '../Routes/Routing';
-
 import roleRightsConfig from '../../config/roleRights';
+
+import './Main.scss';
 
 
 const Main = props => {
@@ -13,14 +15,14 @@ const Main = props => {
 
     if (!props.links) {
         return (
-            <div className='App'>
+            <div className='Main'>
                 Loading...
             </div>
         );
     }
 
     return (
-        <div className='App'>
+        <div className='Main'>
             <LeftMenu />
             <Routing />
         </div>

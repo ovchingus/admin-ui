@@ -1,0 +1,10 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  &__form {
+    margin-left: 5px;
+    margin-top: 28px;
+  }
+}

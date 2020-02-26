@@ -4,10 +4,10 @@ $black: #000;
 $text-color: $black;
 $black-light: #4f4f4f;
 
-$grey-light: #f2f2f2;
-$grey-light-2: #e9e9e9;
-$grey-medium: #bdbdbd;
-$grey-dark: #828282;
+$gray-light: #f2f2f2;
+$gray-light-2: #e9e9e9;
+$gray-medium: #bdbdbd;
+$gray-dark: #828282;
 
 $primary: #1f26cd;
 $menu-border-color: #1f26cd;
@@ -16,7 +16,7 @@ $primary-light: #696ff9;
 
 $danger: red;
 
-$border-color: $grey-medium;
+$border-color: $gray-medium;
 
 $menu-background: $white;
 
@@ -24,5 +24,6 @@ $menu-background: $white;
 $theme-colors: (
         "text-color": $black,
         "menu-background": $menu-background,
-        "menu-border-color": $menu-border-color
+        "menu-border-color": $menu-border-color,
+        "gray-dark": $gray-dark
 );
