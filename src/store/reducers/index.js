@@ -1,3 +1,9 @@
 import { combineReducers } from 'redux-immutablejs';
 
-export default combineReducers({});
+import users from './users';
+import roleRights from './roleRights';
+
+export default combineReducers({
+    users,
+    roleRights,
+});
