@@ -8,8 +8,9 @@ import { roleRightsSelectors } from '../../store/selectors';
 
 const RoleRoute = ({ role, ...props }) => {
     const roleInfo = roleRightsConfig[role] || {};
+    const path = Array.isArray(props.path) ? props.path : [props.path];
 
-    if (roleInfo.links && roleInfo.links.find(l => l.url === props.path)) {
+    if (roleInfo.links && roleInfo.links.find(l => path.includes(l.url))) {
         return (
             <Route {...props}>
                 {props.children}

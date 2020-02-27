@@ -27,7 +27,7 @@ const LeftMenu = ({ profile, links }) => {
                 </div>
             </div>
 
-            <Navigation chosenClassName='LeftMenu__chosen' links={links} />
+            <Navigation links={links} />
         </div>
     );
 };

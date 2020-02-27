@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Form.scss';
+import Input from '../Input';
 
 
 
@@ -12,8 +13,13 @@ const Form = (props) => {
         >
             {props.data.map((item, i) => (
                 <React.Fragment key={i}>
-                    <span>{item.label}</span>
-                    <span>{item.value}</span>
+                    <span><div>{item.label}</div></span>
+                    <Input
+                        editable={!item.disabled}
+                        disabled={item.disabled}
+                        placeholder={item.placeholder}
+                        value={item.value}
+                    />
                 </React.Fragment>
             ))}
         </div>
@@ -30,6 +36,8 @@ Form.propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
         label: PropTypes.string,
         value: PropTypes.string,
+        placeholder: PropTypes.string,
+        disabled: PropTypes.bool,
         render: PropTypes.func,
     }))
 };

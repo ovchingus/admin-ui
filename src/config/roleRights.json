@@ -10,6 +10,10 @@
       {
         "label": "Организации",
         "url": "/organizations"
+      },
+      {
+        "label": "Роли",
+        "url": "/roles"
       }
     ]
   }
