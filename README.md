@@ -1,4 +1,3 @@
-# Admin UI
+# bimdata-admin-ui/
 
-The module is for showing admin components for different organizations types.
-
+Describe bimdata-admin-ui/ here.
