@@ -1,0 +1,20 @@
+{
+  "admin": {
+    "name": "admin",
+    "links": [
+      {
+        "label": "Главная",
+        "url": "/",
+        "exact": true
+      },
+      {
+        "label": "Организации",
+        "url": "/organizations"
+      },
+      {
+        "label": "Роли",
+        "url": "/roles"
+      }
+    ]
+  }
+}
