@@ -5,3 +5,7 @@
 .transition-rotate {
   transition: transform 200ms;
 }
+
+.rotate-45 {
+  transform: rotate(45deg);
+}

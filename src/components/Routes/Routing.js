@@ -4,6 +4,7 @@ import Home from '../Home';
 import RoleRoute from './RoleRoute';
 import Organizations from '../Organizations';
 import Roles from '../Roles';
+import Participants from '../Participants';
 
 
 const Routing = () => {
@@ -17,6 +18,9 @@ const Routing = () => {
             </RoleRoute>
             <RoleRoute path='/roles'>
                 <Roles />
+            </RoleRoute>
+            <RoleRoute path='/participants'>
+                <Participants />
             </RoleRoute>
 
         </Switch>
