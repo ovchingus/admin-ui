@@ -1,0 +1,65 @@
+.Participants {
+  width: 100%;
+  padding-top: 28px;
+
+  &__table {
+    min-width: 35rem;
+    display: grid;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat(6, auto) 24px;
+    grid-auto-rows: 1.5rem;
+    grid-row-gap: 2px;
+
+    &-cell {
+      padding-left: 5px;
+      display: flex;
+      align-items: center;
+      font-weight: 300;
+      font-size: 0.875rem;
+      line-height: 1rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &-header {
+      border-bottom: solid 1px var(--gray-dark);
+
+      &:hover {
+        cursor: default;
+      }
+    }
+  }
+
+  &__add {
+    &-button {
+      display: flex;
+      align-items: center;
+      color: var(--gray-medium);
+      margin-top: 0.25rem;
+    }
+
+    &-icon {
+      margin-left: 2px;
+    }
+  }
+
+  &__card {
+    background: var(--white);
+    position: fixed;
+    right: 0;
+    top: 0;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
+    height: calc(100vh - 10px);
+    min-width: 34.5rem;
+    padding-top: 2.625rem;
+
+    &-close {
+      position: absolute;
+      top: 10px;
+      right: 5px;
+      cursor: pointer;
+    }
+  }
+}

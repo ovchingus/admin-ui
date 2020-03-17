@@ -8,7 +8,7 @@ const Roles = (props) => {
             <div className='Roles__container'>
                 <div className='Roles__names'>
                     <span/>
-                    {roles.map((r, i) => (<span>{r.name}</span>))}
+                    {roles.map((r, i) => (<span key={i}>{r.name}</span>))}
                 </div>
                 <div className='Roles__table'>
                     {LIST_PERMISSIONS.map((p, i) => (
