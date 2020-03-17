@@ -3,8 +3,7 @@
     display: grid;
 
     &--grid {
-      grid-template-columns: 12.25rem auto;
-      grid-column-gap: 0.75rem;
+      grid-template-columns: 13rem auto;
       grid-row-gap: 0.875rem;
       grid-auto-rows: 1.5rem;
     }
@@ -17,6 +16,7 @@
       display: flex;
       align-items: center;
       letter-spacing: -0.333333px;
+      padding-right: 0.75rem;
 
       & > div {
         white-space: nowrap;
