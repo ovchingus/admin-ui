@@ -2,9 +2,7 @@ import config from '../config/api';
 import axios from 'axios';
 import TokenStorage from '../helpers/utils/storage/TokenStorage';
 
-const DEPLOYED_MODE = (window.location.host.search('bimdata') > -1) // eslint-disable-line
-    ? (window.location.host.search('dev') > -1 ? 'development' : 'production')
-    : 'localhost';
+const DEPLOYED_MODE = 'localhost';
 
 const API_URL = (typeof process.env.API_URL === 'object') // eslint-disable-line
     ? process.env.API_URL[DEPLOYED_MODE] || null

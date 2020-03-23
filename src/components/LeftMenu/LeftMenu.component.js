@@ -16,7 +16,7 @@ const LeftMenu = ({ profile, links }) => {
                 <Link to={'/'}>
                     <div className='LeftMenu__top-part--logoContainer'>
                         <Image src={IconLogo} alt="logo" />
-                        <span>BIMDATA</span>
+                        <span>APP</span>
                     </div>
                 </Link>
 

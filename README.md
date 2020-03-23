@@ -1,3 +1,3 @@
-# bimdata-admin-ui/
+# admin-ui/
 
-Describe bimdata-admin-ui/ here.
+Describe admin-ui/ here.
