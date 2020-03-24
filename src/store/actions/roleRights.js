@@ -5,3 +5,4 @@ const moduleName = 'roleRights';
 const createAction = actionCreator(moduleName);
 
 export const setPermissions = createAction(BASE_ACTIONS.SET, 'rights');
+export const setPermissionsType = setPermissions()['type']
