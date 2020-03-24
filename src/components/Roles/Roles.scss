@@ -1,109 +1,102 @@
 .Roles {
-  margin-top: 7px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 96px min-content;
+  padding-top: 7px;
+  padding-left: 15px;
+  overflow-x: auto;
 
   &__header {
-    width: calc(100vw - 300px);
     display: grid;
-    grid-template-columns: 216px calc(100vw - 600px) 82px;
-    font-size: 0.875rem;
-    height: 96px;
-  }
-
-  &__corner {
-    display: flex;
+    grid-template-columns: 211px 1fr 20fr;
     align-items: center;
-    justify-content: center;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
+    grid-gap: 24px;
 
-  &__modules {
-    padding-left: 24px;
-    display: grid;
-    overflow-x: auto;
-    grid-template-columns: repeat(8, 24px);
-    align-items: end;
-    grid-column-gap: 24px;
+    &-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-    &-col {
-      writing-mode:vertical-rl; /* vertical text */
-      transform:rotate(180deg); /* spin to orient as required */
+    &-modules {
+      display: grid;
+      grid-auto-columns: 24px;
+      grid-auto-flow: column;
+      grid-column-gap: 24px;
+      align-items: end;
+      justify-items: center;
+    }
+
+    &-modules > span {
+      transform: rotate(180deg);
+      writing-mode: vertical-lr;
     }
   }
 
-  &__container {
-    margin-top: 84px;
-    width: calc(100vw - 300px);
+  &__body {
     display: grid;
-    grid-template-columns: 216px calc(100vw - 600px) 82px;
-    font-size: 0.875rem;
-  }
-
-  &__names {
-    display: grid;
-    grid-template-columns: 216px;
+    grid-template-columns: 1fr;
     grid-auto-rows: 24px;
     grid-row-gap: 12px;
-
-    & > span {
-      padding-left: 15px;
-    }
+    padding-top: 84px;
   }
 
-  &__table {
-    padding-left: 24px;
-    overflow-x: auto;
+  &__row {
     display: grid;
-    grid-template-columns: repeat(8, 24px);
-    align-items: start;
+    grid-template-columns: 211px 1fr 20fr;
     grid-column-gap: 24px;
-    grid-row-gap: 12px;
+    grid-auto-rows: 24px;
 
-    &-col {
-      display: contents;
+    &-name {
+      display: grid;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    &-cell {
-      display: flex;
-      justify-content: center;
+    &-buttons {
+      display: grid;
+      grid-auto-columns: 24px;
+      grid-auto-flow: column;
+      grid-column-gap: 24px;
+    }
+
+    // display only on hover
+    &-actions {
+      display: none;
+      align-items: center;
+      justify-content: flex-end;
     }
   }
 
-  &__crud {
-    & > button {
-      border-radius: 50%;
-      display: flex;
-      background: var(--gray-medium-2);
-      justify-content: center;
-      align-items: center;
-      width: 24px;
-      height: 24px;
-      margin: 0;
-      padding: 0;
-      border: none;
+  &__row:hover {
+    background-color: var(--gray-light-2);
+  }
 
-      &:not(:first-child) {
-        margin-left: 4px;
-      }
+  &__row:hover &__row-actions {
+    display: flex;
+  }
 
-      &[data-active="edit"] {
-        background: url(../../assets/icons/access-edit.svg) no-repeat center;
-        color: var(--white);
-      }
+  &__button {
+    width: 24px;
+    height: 24px;
+  }
 
-      &[data-active="off"] {
-        background: url(../../assets/icons/access-off.svg) no-repeat center;
-        color: var(--white);
-      }
+  &__add {
+    padding-top: 12px;
+    color: var(--gray-medium);
+    display: grid;
+    grid-row-gap: 12px;
+    grid-template-rows: 24px 24px;
 
-      &[data-active="view"] {
-        background: url(../../assets/icons/access-view.svg) no-repeat center;
-        color: var(--white);
-      }
+    &-row {
+      display: grid;
+      grid-column-gap: 20px;
+      grid-auto-rows: 24px;
+      grid-template-columns: 24px 1fr;
+    }
 
-      &:focus {
-        outline: none;
-      }
+    &-row:hover {
+      background-color: var(--gray-light-2);
     }
   }
 }

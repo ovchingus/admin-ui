@@ -30,7 +30,7 @@ export const LIST_PERMISSIONS = [
     {
         name: 'Документы',
         field: 'documents',
-    },
+    }
 ];
 
 export const roles = [

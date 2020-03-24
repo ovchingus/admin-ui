@@ -1,0 +1,34 @@
+.IconButton {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &[data-icon="access-edit"] {
+    background: url("../../../assets/icons/access-edit.svg") no-repeat center;
+  }
+
+  &[data-icon="access-off"] {
+    background: url("../../../assets/icons/access-off.svg") no-repeat center;
+  }
+
+  &[data-icon="access-view"] {
+    background: url("../../../assets/icons/access-view.svg") no-repeat center;
+  }
+
+  &[data-icon='add-special'] {
+    background: url('../../../assets/icons/action-add-special.svg') no-repeat center;
+  }
+
+  &[data-icon='add'] {
+    background: url('../../../assets/icons/add-icon.svg') no-repeat center;
+  }
+
+  &[data-icon='remove'] {
+    background: url('../../../assets/icons/action-remove.svg') no-repeat center;
+  }
+}
