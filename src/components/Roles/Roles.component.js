@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import cx from 'classnames';
 
 import IconButton from '../BaseComponents/IconButton'
 import Input from '../BaseComponents/Input'
@@ -35,7 +36,7 @@ function Roles(props) {
   const [newRole, setNewRole] = useState(null);
   const [newRoleName, setNewRoleName] = useState('');
 
-  const handleAddRole = () => setNewRole({ ...buildRole(props.modules) });
+  const handleAddRole = () => !isCopyMode && setNewRole({ ...buildRole(props.modules) });
   const handleCopyRole = (role) => setNewRole({ ...role, name: '' });
 
   const handleChangePermission = (role, module) => props.setPermission({ role, module });
@@ -49,11 +50,26 @@ function Roles(props) {
     setNewRoleName('');
   }
 
+  const [isCopyMode, setIsCopyMode] = useState(false);
+
+  const handleToggleCopyMode = () => setIsCopyMode(!isCopyMode)
+
+  const handleAddRoleCopyMode = (role) => {
+    isCopyMode && handleCopyRole(role)
+    setIsCopyMode(false)
+  }
+
   function RolesRow(props) {
     return (
       <div className='Roles__wrapper'>
         {props.rows.map((r, i) => (
-          <div key={i} className='Roles__row'>
+          <div
+            key={i}
+            className={cx('Roles__row', {
+              ['Roles__row--copy']: isCopyMode
+            })}
+            onClick={() => handleAddRoleCopyMode(r)}
+          >
             <div className='Roles__row-name'>
               {r.name === '' ? (
                 <Input
@@ -124,8 +140,16 @@ function Roles(props) {
             Добавить новую роль
           </span>
         </div>
-        <div className='Roles__add-row'>
-          <IconButton className='Roles__button' icon='add-special' />
+        <div
+          className={cx('Roles__add-row', {
+            ['Roles__add-row--copy']: isCopyMode
+          })}
+          onClick={handleToggleCopyMode}
+        >
+          <IconButton
+            className='Roles__button'
+            icon='add-special'
+          />
           <span className='Roles__row-add'>
             Создать новую роль на основе существующей
           </span>
