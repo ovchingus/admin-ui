@@ -3,7 +3,18 @@ import React, { useEffect, useState, useRef } from 'react';
 import IconButton from '../BaseComponents/IconButton'
 import Input from '../BaseComponents/Input'
 import './Roles.scss';
-import { LIST_PERMISSIONS, roles } from './mock'
+import { LIST_PERMISSIONS, roles } from './mock';
+
+function buildRole(modules) {
+  const role = {
+    name: '',
+    permissions: {}
+  }
+  for (const module of modules) {
+    role.permissions[module.field] = { create: false, read: true, update: false, delete: false }
+  }
+  return role
+}
 
 function resolveAccess(permissions) {
   const { create: c, read: r, update: u, delete: d } = permissions;
@@ -18,16 +29,17 @@ const Roles = (props) => {
     props.fetchModules();
   }, []);
 
-  const [roleName, setRoleName] = useState('')
+  const [roleName, setRoleName] = useState('');
 
   const handleChangePermission = (role, module) => props.setPermission({ role, module });
   const handleRemoveRole = (role) => props.removeRole({ role });
-  const handleAddRole = (role) => props.addRole({ role: { ...role, name: '', } })
+  const handleAddRole = () => props.addRole({ role: buildRole(props.modules) })
+  const handleCopyRole = (role) => props.addRole({ role: { ...role, name: '', } });
   const handleRenameRole = (role, newName) => {
     props.updateRole({
       role, newRole: { ...role, name: newName }
-    })
-    setRoleName('')
+    });
+    setRoleName('');
   }
 
   return (
@@ -69,7 +81,7 @@ const Roles = (props) => {
             </div>
             <div className='Roles__row-actions'>
               <IconButton
-                onClick={() => handleAddRole(r)}
+                onClick={() => handleCopyRole(r)}
                 className='Roles__button'
                 icon='add-special'
               />
@@ -82,7 +94,7 @@ const Roles = (props) => {
           </div>))}
       </div>
       <div className='Roles__add'>
-        <div className='Roles__add-row' onClick={() => alert('daw')}>
+        <div className='Roles__add-row' onClick={handleAddRole}>
           <IconButton className='Roles__button' icon='add' />
           <span className='Roles__row-add'>
             Добавить новую роль
