@@ -3,9 +3,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import IconButton from '../BaseComponents/IconButton'
 import Input from '../BaseComponents/Input'
 import './Roles.scss';
-import { LIST_PERMISSIONS, roles } from './mock';
 
-function buildRole(modules) {
+const buildRole = (modules) => {
   const role = {
     name: '',
     permissions: {}
@@ -16,61 +15,59 @@ function buildRole(modules) {
   return role
 }
 
-function resolveAccess(permissions) {
+const resolveAccess = (permissions) => {
   const { create: c, read: r, update: u, delete: d } = permissions;
   if (c && r && u && d) return 'access-edit';
   if (!c && r && !u && !d) return 'access-view';
   if (!c && !r && !u && !d) return 'access-off';
 }
 
-const Roles = (props) => {
+
+
+
+function Roles(props) {
+
   useEffect(() => {
     props.fetchRoles();
     props.fetchModules();
   }, []);
 
-  const [roleName, setRoleName] = useState('');
+  const [newRole, setNewRole] = useState(null);
+  const [newRoleName, setNewRoleName] = useState('');
+
+  const handleAddRole = () => setNewRole({ ...buildRole(props.modules) });
+  const handleCopyRole = (role) => setNewRole({ ...role, name: '' });
 
   const handleChangePermission = (role, module) => props.setPermission({ role, module });
   const handleRemoveRole = (role) => props.removeRole({ role });
-  const handleAddRole = () => props.addRole({ role: buildRole(props.modules) })
-  const handleCopyRole = (role) => props.addRole({ role: { ...role, name: '', } });
-  const handleRenameRole = (role, newName) => {
-    props.updateRole({
-      role, newRole: { ...role, name: newName }
-    });
-    setRoleName('');
+
+  const handleInputBlur = (role) => {
+    if (newRoleName !== '') {
+      props.addRole({ role: { ...newRole, name: newRoleName } });
+    }
+    setNewRole(null);
+    setNewRoleName('');
   }
 
-  return (
-    <div className='Roles'>
-      <div className='Roles__header'>
-        <div className='Roles__header-title'>Название роли</div>
-        <div className='Roles__header-modules'>
-          {props.modules.map((p, i) => (
-            <span key={i}>
-              {p.name}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div className='Roles__body'>
-        {props.roles.map((r, i) => (
+  function RolesRow(props) {
+    return (
+      <div className='Roles__wrapper'>
+        {props.rows.map((r, i) => (
           <div key={i} className='Roles__row'>
             <div className='Roles__row-name'>
               {r.name === '' ? (
                 <Input
                   autoFocus
-                  value={roleName}
-                  onChange={setRoleName}
-                  onBlur={() => handleRenameRole(r, roleName)}
+                  value={newRoleName}
+                  onChange={setNewRoleName}
+                  onBlur={() => handleInputBlur(r)}
                 />
               ) : (
                   <span>{r.name}</span>
                 )}
             </div>
             <div className='Roles__row-buttons'>
-              {props.modules.map((p, i) => (
+              {props.cols.map((p, i) => (
                 <IconButton
                   key={i}
                   className='Roles__button'
@@ -93,6 +90,33 @@ const Roles = (props) => {
             </div>
           </div>))}
       </div>
+    )
+  }
+
+  return (
+    <div className='Roles'>
+      <div className='Roles__header'>
+        <div className='Roles__header-title'>Название роли</div>
+        <div className='Roles__header-modules'>
+          {props.modules.map((p, i) => (
+            <span key={i}>
+              {p.name}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div className='Roles__body'>
+        <RolesRow
+          rows={props.roles}
+          cols={props.modules}
+        />
+        {newRole && (
+          <RolesRow
+            rows={[newRole]}
+            cols={props.modules}
+          />
+        )}
+      </div>
       <div className='Roles__add'>
         <div className='Roles__add-row' onClick={handleAddRole}>
           <IconButton className='Roles__button' icon='add' />
@@ -110,6 +134,5 @@ const Roles = (props) => {
     </div>
   );
 };
-
 
 export default Roles;

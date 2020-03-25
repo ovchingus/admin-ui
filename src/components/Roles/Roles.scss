@@ -100,4 +100,8 @@
       background-color: var(--gray-light-2);
     }
   }
+
+  &__wrapper {
+    display: contents;
+  }
 }

@@ -18,7 +18,6 @@ const mapDispatchToProps = {
     setPermission: rolesActions.setPermission,
     removeRole: rolesActions.removeRole,
     addRole: rolesActions.addRole,
-    updateRole: rolesActions.updateRole,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Roles);
